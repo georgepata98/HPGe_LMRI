@@ -1,0 +1,11 @@
+/gps/verbose 0
+/gps/particle gamma
+/gps/pos/type Point
+#
+# SE MODIFICA MAI JOS POZITIA DE EMITERE A FOTONILOR GAMA:
+/gps/pos/centre 0 0 10 cm
+/gps/ang/type iso
+/gps/ene/type Mono
+#
+# SE MODIFICA MAI JOS ENERGIA GAMA:
+/gps/ene/mono 20 keV
