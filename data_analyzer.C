@@ -9,7 +9,7 @@
     cout << "\n   Fisierele root trebuie sa fie in acelasi folder cu acest program !" << endl;
     cout << "Nr. de fisiere root facute dupa o simulare (egal cu nr. de Run-uri):\n     "; cin >> num;
     cout << "Numele fisierelor root (fara .root si fara a specifica ID-ul Run-ului):\n     "; cin >> rootFileName;
-    cout << "Numele histogramelor din fisierele root (din codul Geant4 in run.cc):\n     "; cin >> histoName;
+    cout << "Numele histogramelor din fisierele root ('Edep', din codul Geant4 in run.cc):\n     "; cin >> histoName;
     cout << "\n   ATENTIE: trebuie sa fie doar 1 histograma per fisier root !" << endl << endl;
 
 
