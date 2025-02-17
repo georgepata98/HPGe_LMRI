@@ -26,7 +26,7 @@
             cout << "\nEROARE: Nu s-a gasit histograma " << histoName << endl;
             return 1;
         }
-        else { histograms->Print(); }  //printeaza info generale din histograma curenta
+        //else { histograms->Print(); }  //printeaza info generale din histograma curenta
 
         if(!combinedHisto)
         {
@@ -40,7 +40,7 @@
 
 
     // Crearea unui fisier root cu histograma combinedHisto
-    if(combinedHisto)
+    if(combinedHisto && num>1)
     {
         TFile outputFile("output_final.root", "RECREATE");
         combinedHisto->Write();
@@ -49,9 +49,9 @@
 
     // Umplerea unui fisier text cu datele din combinedHisto
     string a;
-    cout << "\nIncarcati datele din histograma finala intr-un fisier text? (da/nu): "; cin >> a;
+    cout << "Incarcati datele din histograma finala intr-un fisier text? (da/nu): "; cin >> a;
 
-    if(a == "da" || a == "yes" || a == "y")
+    if(a=="da" || a=="yes" || a=="y")
     {
         fstream ofile;
         ofile.open("spectru_final.txt", ios::out);
@@ -65,7 +65,7 @@
     }
 
     // Integrala fotopicului si FEPE
-    cout << "\nSe calculeaza eficacitatea absoluta de fotopic? (da/nu): "; cin >> a;
+    cout << "Se calculeaza eficacitatea absoluta de fotopic? (da/nu): "; cin >> a;
     if(a == "da" || a == "yes" || a == "y")
     {
         int nbins, bin_st, bin_dr, nr_particule;  // stanga si dreapta binilor de integrare
