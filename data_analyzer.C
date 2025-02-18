@@ -66,7 +66,7 @@
 
     // Integrala fotopicului si FEPE
     cout << "Se calculeaza eficacitatea absoluta de fotopic? (da/nu): "; cin >> a;
-    if(a == "da" || a == "yes" || a == "y")
+    if(a=="da" || a=="yes" || a=="y")
     {
         int nbins, bin_st, bin_dr, nr_particule;  // stanga si dreapta binilor de integrare
         double bin1_min, bin1_max, e_st, e_dr, bin_err, bin_width, sum=0;
@@ -80,22 +80,17 @@
         cout << "\nNr. de particule simulate: "; cin >> nr_particule;
         cout << "\nNr. de bini ai histogramei: " << nbins << "\nGrosime bin: " << bin_width << " [keV]" << endl;
         cout << "Intervalul de energii pe care se integreaza, in [keV]:" << endl;
-        cout << "     E_stanga  = "; cin >> e_st;
-        cout << "     E_dreapta = "; cin >> e_dr;
+        cout << "E_stanga  = "; cin >> e_st;
+        cout << "E_dreapta = "; cin >> e_dr;
 
-        // Daca bin_width=2 si e_st sau e_dr=6 atunci 6 apartine binului 6/2=3
-        // Daca e_st sau e_dr=7 atunci 7 apartine binului 7/2+1=4
-        if(e_st == (e_st/bin_width)*bin_width)
+        for(int i=1; i<=combinedHisto->GetNbinsX(); ++i)
         {
-            bin_st = e_st/bin_width;
+            if(bin1_min+i*bin_width < e_st) bin_st = i+1;
+            if(bin1_min+i*bin_width == e_st) bin_st = i;
+            if(bin1_min+i*bin_width < e_dr) bin_dr = i+1;
+            if(bin1_min+i*bin_width == e_dr) bin_dr = i;
         }
-        else { bin_st = e_st/bin_width+1; }
-
-        if(e_dr == (e_dr/bin_width)*bin_width)
-        {
-            bin_dr = e_dr/bin_width;
-        }
-        else { bin_dr = e_dr/bin_width+1; }
+        cout << "\n=> bin_stanga  = " << bin_st << "\n=> bin_dreapta = " << bin_dr;
 
 
         for(int i=1; i<=combinedHisto->GetNbinsX(); ++i)  // parcurgere de la bin 1 la numar total de bini
