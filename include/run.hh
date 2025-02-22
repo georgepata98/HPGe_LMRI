@@ -40,8 +40,7 @@ private:
     std::ofstream fOutputFile;
 
     // Numar bini si capetele histogramei, e1 = floor(1.1 * E_gamma)
-
-    G4int nbins, e0 = 0, e1 = 25;
+    G4int nbins, e0=0, e1=25;
 };
 
 #endif
