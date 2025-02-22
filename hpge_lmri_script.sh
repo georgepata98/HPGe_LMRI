@@ -194,7 +194,7 @@ for i in {0..20}; do
         rm "checkpoint_Run0.txt" "sim"
         mv "histogram_Run0.root" ../results
         cd "../results"
-        mv "histogram_Run0.root" "hpge_${i}cm_${energy}kev.root"
+        mv "histogram_Run0.root" "hpge_${i}cm_${energy}kev_Run0.root"
         cd "../build"
         sleep 3
     done
