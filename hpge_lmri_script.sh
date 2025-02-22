@@ -172,21 +172,22 @@ for i in {0..20}; do
             energy=1600
         fi
         sed -i "12d" ../macros/gps.mac  # stergere fosta linie 11
-        if [ $j -le 0 ] && [ $j -lt 5 ]; then
+        if [ $j -ge 0 ] && [ $j -le 5 ]; then
             sed -i "21i unsigned long long int totalEvents = 20000;" ../main.cc
             sed -i "22d" ../main.cc
         fi
-        if [ $j -le 5 ] && [ $j -lt 10 ]; then
-            sed -i "21i unsigned long long int totalEvents = 70000;" ../main.cc
+        if [ $j -ge 6 ] && [ $j -le 10 ]; then
+            sed -i "21i unsigned long long int totalEvents = 60000;" ../main.cc
             sed -i "22d" ../main.cc
         fi
-        if [ $j -le 10 ] && [ $j -lt 15 ]; then
+        if [ $j -ge 11 ] && [ $j -le 15 ]; then
             sed -i "21i unsigned long long int totalEvents = 200000;" ../main.cc
             sed -i "22d" ../main.cc
         fi
-        if [ $j -le 15 ] && [ $j -lt 20 ]; then
-            sed -i "21i unsigned long long int totalEvents = 700000;" ../main.cc
+        if [ $j -ge 16 ] && [ $j -le 20 ]; then
+            sed -i "21i unsigned long long int totalEvents = 600000;" ../main.cc
             sed -i "22d" ../main.cc
+        fi
         fi
         cmake ..
         make -j8
