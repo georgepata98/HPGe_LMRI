@@ -2,6 +2,22 @@ for i in {0..20}; do
     echo "Distanta sursa-detector $i [cm]"
     sed -i "6i /gps/pos/centre 0 0 $i cm" ../macros/gps.mac
     sed -i "7d" ../macros/gps.mac  # stergere fosta linia 6 devenita 7
+    if [ $i -ge 0 ] && [ $i -le 5 ]; then
+        sed -i "21i unsigned long long int totalEvents = 2000000;" ../main.cc
+        sed -i "22d" ../main.cc
+    fi
+    if [ $i -ge 6 ] && [ $i -le 10 ]; then
+        sed -i "21i unsigned long long int totalEvents = 6000000;" ../main.cc
+        sed -i "22d" ../main.cc
+    fi
+    if [ $i -ge 11 ] && [ $i -le 15 ]; then
+        sed -i "21i unsigned long long int totalEvents = 20000000;" ../main.cc
+        sed -i "22d" ../main.cc
+    fi
+    if [ $i -ge 16 ] && [ $i -le 20 ]; then
+        sed -i "21i unsigned long long int totalEvents = 60000000;" ../main.cc
+        sed -i "22d" ../main.cc
+    fi
     for j in {1..28}; do
         if [ $j -eq 1 ]; then
             sed -i "11i /gps/ene/mono 40 keV" ../macros/gps.mac
@@ -172,23 +188,6 @@ for i in {0..20}; do
             energy=1600
         fi
         sed -i "12d" ../macros/gps.mac  # stergere fosta linie 11
-        if [ $i -ge 0 ] && [ $i -le 5 ]; then
-            sed -i "21i unsigned long long int totalEvents = 20000;" ../main.cc
-            sed -i "22d" ../main.cc
-        fi
-        if [ $i -ge 6 ] && [ $i -le 10 ]; then
-            sed -i "21i unsigned long long int totalEvents = 60000;" ../main.cc
-            sed -i "22d" ../main.cc
-        fi
-        if [ $i -ge 11 ] && [ $i -le 15 ]; then
-            sed -i "21i unsigned long long int totalEvents = 200000;" ../main.cc
-            sed -i "22d" ../main.cc
-        fi
-        if [ $i -ge 16 ] && [ $i -le 20 ]; then
-            sed -i "21i unsigned long long int totalEvents = 600000;" ../main.cc
-            sed -i "22d" ../main.cc
-        fi
-        fi
         cmake ..
         make -j8
         ./sim
