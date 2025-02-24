@@ -32,7 +32,7 @@ G4VPhysicalVolume* MyDetectorConstruction::DefineVolumes()
     G4Material *vacuum = new G4Material("vacuum", 1, 1.008*g/mole, 1e-25*g/cm3, kStateGas, 2.73*kelvin, 3e-18*pascal);
 
 
-    G4Box *solidWorld = new G4Box("solidWorld", 20*cm, 20*cm, 20*cm);  // hx, hy, hz
+    G4Box *solidWorld = new G4Box("solidWorld", 30*cm, 30*cm, 30*cm);  // hx, hy, hz
     G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, air, "logicWorld");
     G4VPhysicalVolume *physWorld = new G4PVPlacement(0, G4ThreeVector(0, 0, 0), logicWorld, "physWorld", 0, false, 0);
 
