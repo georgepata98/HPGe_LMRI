@@ -101,6 +101,12 @@
         }
     }
 
+    // Verificare prima sortare
+    // for(int i=0; i<len; i++)
+    // {
+    //     cout << sort_distance1[i] << " " << sort_energy1[i] << " " << sort_fepe1[i] << " " << sort_ufepe1[i] << endl;
+    // }
+
 
     // Calcularea numarului de energii diferite la fiecare distanta
     for(int i=0; i<len; i++)
@@ -148,16 +154,19 @@
     int card_energy_len = card_energy.size();  // len=21 pentru distantele 0...20
     min=0;
     index=0;
-    // for(index=0; index<card_energy_len; index++)
+int t=0;
     while(1)
     {
         if(index >= card_energy_len) break;
-        int ene_per_dist = card_energy[index];
+        int ene_per_dist = card_energy[index];  // nr. de energii per distanta
+        int aux_per_dist=0;
+        if(index>0) { auxx += ene_per_dist; }
         while(1)
         {
+            if(aux_per_dist == ene_per_dist) break;
             int aux = sort_distance2.size();
             int sum = auxx + ene_per_dist;
-            if(aux == ene_per_dist) break;
+            // if(aux == ene_per_dist) break;
             for(int i=auxx; i<sum; i++)
             {
                 for(int j=auxx; j<sum; j++)
@@ -170,19 +179,25 @@
                         }
                     }
                 }
-                if(min == ene_per_dist - aux)
+                // int diff = ene_per_dist - aux;
+                int diff = ene_per_dist - aux_per_dist;
+cout << ene_per_dist << " " << aux_per_dist << endl; system("sleep 1");
+                if(min == diff)
                 {
                     sort_distance2.push_back(sort_distance1[i]);
                     sort_energy2.push_back(sort_energy1[i]);
                     sort_fepe2.push_back(sort_fepe1[i]);
                     sort_ufepe2.push_back(sort_ufepe1[i]);
+cout << sort_distance2[t] << " " << sort_energy2[t] << " " << sort_fepe2[t] << " " << sort_ufepe2[t] << endl;
+                    aux = sort_distance2.size();
+                    aux_per_dist++;
                 }
-                // aux = sort_distance2.size();
                 min=0;
             }
         }
-        auxx += ene_per_dist;
+        // auxx += ene_per_dist;
         index++;
+t++;
     }
 
 
