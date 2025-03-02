@@ -66,7 +66,7 @@
         }
         min=0;
     }
-    cout << "Numar distante diferite: " << card_distance << endl;
+    cout << "Numar distante diferite: " << card_distance << endl << endl;
 
 
     for(int i=0; i<card_distance; i++)
@@ -144,16 +144,23 @@
 
 
     // Sortarea finala - dupa cresterea energiei
-    auxx = 0;
-    for(int index=0; index<card_energy.size(); index++)
+    auxx=0;
+    int card_energy_len = card_energy.size();  // len=21 pentru distantele 0...20
+    min=0;
+    index=0;
+    // for(index=0; index<card_energy_len; index++)
+    while(1)
     {
+        if(index >= card_energy_len) break;
+        int ene_per_dist = card_energy[index];
         while(1)
         {
-            int aux = 0;
-            if(aux == card_energy[index]) break;
-            for(int i=auxx; i<(auxx+card_energy[index]); i++)
+            int aux = sort_distance2.size();
+            int sum = auxx + ene_per_dist;
+            if(aux == ene_per_dist) break;
+            for(int i=auxx; i<sum; i++)
             {
-                for(int j=auxx; j<(auxx+card_energy[index]); j++)
+                for(int j=auxx; j<sum; j++)
                 {
                     if(sort_distance1[i] == sort_distance1[j])
                     {
@@ -163,17 +170,27 @@
                         }
                     }
                 }
-                if(min == card_energy[index])
+                if(min == ene_per_dist - aux)
                 {
                     sort_distance2.push_back(sort_distance1[i]);
                     sort_energy2.push_back(sort_energy1[i]);
                     sort_fepe2.push_back(sort_fepe1[i]);
                     sort_ufepe2.push_back(sort_ufepe1[i]);
                 }
+                // aux = sort_distance2.size();
+                min=0;
             }
         }
-        auxx += card_energy[index];
+        auxx += ene_per_dist;
+        index++;
     }
+
+
+    // Umplerea fisierului de output
+    // for(int i=0; i<len; i++)
+    // {
+    //     cout << sort_distance2[i] << " " << sort_energy2[i] << " " << sort_fepe2[i] << " " << sort_ufepe2[i] << endl;
+    // }
 
 
 
